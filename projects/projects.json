@@ -1,0 +1,96 @@
+[
+  
+  {
+    "name": "JoBiz",
+    "desc": "Cross-platform job portal for jobs, internships, startups, and career growth (Android, iOS, Web).",
+    "image": "jobiz.png",
+    "category": ["mobile", "web", "app", "ios"],
+    "technologies": ["Flutter", "Firebase", "Android Studio"],
+    "features": [
+      "Job Search & Posting",
+      "Startup Guide",
+      "Personalized Business Suggestions",
+      "Internship Opportunities",
+      "Start-Up Support"
+    ],
+    "links": {
+      "view": "https://www.linkedin.com/posts/nikhilshimpy_flutter-crossplatform-dart-activity-7273717671160872962-c2D7?utm_source=share&utm_medium=member_desktop&rcm=ACoAADn_i0YBsJdDqg7i_rY4sHhWLWuwNAG52gA",
+      "code": "https://github.com/NikhilShimpy/JoBiz"
+     
+    }
+  },
+
+ {
+    "name": "SwapSkill",
+    "desc": "A Peer-to-Peer Skill Exchange Platform built with Flask, Firebase Auth, Firestore, and Firebase Storage. Features include profile creation, skill posting, swap requests, and live filtering.",
+    "image": "swapskill.png",
+    "category": ["mobile", "web"],
+    "links": {
+      "view": "https://github.com/nikhil/SkillSwap",
+      "code": "https://www.linkedin.com/posts/nikhilshimpy_odoohackathon-skillswap-hackathonmagic-activity-7352068128144617472-E7UO?utm_source=share&utm_medium=member_desktop&rcm=ACoAADn_i0YBsJdDqg7i_rY4sHhWLWuwNAG52gA"
+      
+    }
+  },
+  {
+    "name": "QuickCourt",
+    "desc": "An AI-powered legal case search and quick judgment suggestion platform. Built with NLP, Flask, and SQLite.",
+    "image": "quickcourt.png",
+    "category": ["mobile", "web"],
+    "links": {
+      "view": "https://youtu.be/K-pFGVxv3sg?si=VAfhSz3PGe7ZiRnO",
+      "code": "https://github.com/NikhilShimpy/QuickCourt"
+      
+    }
+  },
+   {
+    "name": "StreetConnect",
+    "desc": "A hyperlocal vendor-supplier connection platform that bridges small street vendors with reliable suppliers. It enables easy ordering, trust-based matching, and affordable micro-supply chains.",
+    "image": "streetconnect.png",
+    "category": ["mobile", "web"],
+    "technologies": ["Flask", "Firebase", "Firestore", "HTML", "CSS", "JavaScript"],
+    "features": [
+      "Vendor and Supplier Profiles",
+      "Product Listings with Pricing",
+      "Smart Matching based on Location & Needs",
+      "Small Order Support for Vendors",
+      "Ratings & Reviews for Trust",
+      "UPI/Wallet Payment Integration",
+      "Local Language Support"
+    ],
+    "links": {
+      "view": "https://github.com/nikhil/StreetConnect",
+      "code": "https://github.com/nikhil/StreetConnect"
+      
+    }
+  },
+ 
+  {
+    "name": "Medipulse",
+    "desc": "A healthcare chatbot web app that answers medical queries and provides personalized responses based on past conversations.",
+    "image": "medipulse.png",
+    "category": "web",
+    "links": {
+      "view": "https://youtu.be/g61LmFrsIkY",
+      "code": "https://github.com/NikhilShimpy/MediPulse-AI"
+     
+    }
+  },
+  {
+    "name": "Trend Analyzer",
+    "desc": "A web app that fetches the latest news, organizes them by date, and displays a curated list to the user. Integrates APIs like NewsAPI and other sources to collect and display trending news.",
+    "image": "trendanalyzer.png",
+    "category": "web",
+    "technologies": ["HTML", "CSS", "JavaScript", "Python", "Flask", "News API"],
+    "features": [
+      "Fetch latest news",
+      "Organize news by date",
+      "Display list of news articles with links",
+      "Integration with multiple news APIs"
+    ],
+    "links": {
+      "view": "https://www.linkedin.com/posts/nikhilshimpy_webdevelopment-newsapp-trendanalyzer-activity-7325878641349836800-Sjwz?utm_source=share&utm_medium=member_desktop&rcm=ACoAADn_i0YBsJdDqg7i_rY4sHhWLWuwNAG52gA",
+      "code": "https://github.com/NikhilShimpy/Trend-Identifierr"
+     
+    }
+  }
+]

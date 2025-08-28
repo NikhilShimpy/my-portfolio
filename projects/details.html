@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Detail</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><i class="fab fa-node-js"></i> Nikhil Shimpy</a>
+  </header>
+
+  <section class="work">
+    <h2 class="heading"><span id="project-name"></span> - Details</h2>
+    <div id="project-detail" class="detail-container"></div>
+    <div class="backbtn">
+      <a href="/projects" class="btn"><i class="fas fa-arrow-left"></i> Back</a>
+    </div>
+  </section>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get("id");
+
+    fetch("projects.json")
+      .then(res => res.json())
+      .then(projects => {
+        const project = projects.find(p => p.name.toLowerCase().replace(/\s/g, "") === projectId);
+        if (project) {
+          document.getElementById("project-name").textContent = project.name;
+          document.getElementById("project-detail").innerHTML = `
+            <img src="/assets/images/projects/${project.image}.png" alt="${project.name}" style="max-width:400px; border-radius:10px;">
+            <p style="margin-top:2rem; font-size:1.6rem; line-height:1.8; color:#B0B8C1;">${project.desc}</p>
+          `;
+        }
+      });
+  </script>
+</body>
+</html>
