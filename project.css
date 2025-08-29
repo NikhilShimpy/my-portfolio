@@ -549,3 +549,44 @@ header .navbar ul li a:hover {
     padding: 3px 6px;
   }
 }
+
+/* back button  */
+/* Back to home button - Mobile only */
+.back-to-home {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 997;
+  display: none;
+}
+
+.back-to-home-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #00D9FF;
+  color: #0C1C24;
+  box-shadow: 0 4px 10px rgba(0, 217, 255, 0.3);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.back-to-home-btn:hover {
+  background: #00c0e6;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 217, 255, 0.4);
+}
+
+.back-to-home-btn i {
+  font-size: 1.2rem;
+}
+
+/* Show only on mobile devices */
+@media (max-width: 768px) {
+  .back-to-home {
+    display: block;
+  }
+}
