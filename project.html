@@ -7,26 +7,34 @@
     <link rel="stylesheet" href="project.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Add jQuery for mobile menu functionality -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
- <header>
-  <a href="index.html" class="logo">
-    <img src="nikhil logo.png" alt="Nikhil Logo">
-    <span>Nikhil Shimpy</span>
-  </a>
+    <!-- Header Section - Exact copy from home page -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="nikhil logo.png" alt="Nikhil Logo">
+            <span>Nikhil Shimpy</span>
+        </a>
 
-  <nav class="navbar">
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a class="active" href="projects.html">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>   
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a class="active" href="projects.html">Projects</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile menu icon -->
+        <div id="menu" class="fas fa-bars"></div>
+    </header>   
 
 <section id="projects" class="projects">
   <h2 class="heading">My <span>Projects</span></h2>

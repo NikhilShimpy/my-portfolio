@@ -1,10 +1,23 @@
-// Toggle menu for mobile view
-document.getElementById('menu').addEventListener('click', function() {
-    const navbar = document.querySelector('.navbar');
-    navbar.classList.toggle('active');
+// Mobile menu toggle (using jQuery like your home page)
+$(document).ready(function () {
+    $('#menu').click(function () {
+        $(this).toggleClass('fa-times');
+        $('.navbar').toggleClass('nav-toggle');
+    });
+
+    $(window).on('scroll load', function () {
+        $('#menu').removeClass('fa-times');
+        $('.navbar').removeClass('nav-toggle');
+    });
+
+    // Close navbar when clicking on a link (for mobile)
+    $('.navbar a').on('click', function() {
+        $('#menu').removeClass('fa-times');
+        $('.navbar').removeClass('nav-toggle');
+    });
 });
 
-// View More/Less functionality - FIXED
+// View More/Less functionality
 document.querySelectorAll('.view-more-btn').forEach(button => {
     button.addEventListener('click', function() {
         const projectDetails = this.parentElement.querySelector('.project-full-details');
@@ -69,36 +82,7 @@ document.querySelectorAll('.project-card').forEach(card => {
     }
 });
 
-// Close navbar when clicking on a link (for mobile)
-document.querySelectorAll('.navbar a').forEach(link => {
-    link.addEventListener('click', function() {
-        const navbar = document.querySelector('.navbar');
-        navbar.classList.remove('active');
-    });
-});
-
-// Add smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = targetElement.offsetTop - headerHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Auto-truncate text that overflows - FIXED
+// Auto-truncate text that overflows
 function checkTextOverflow() {
   document.querySelectorAll('.text-content').forEach(container => {
     const shortText = container.querySelector('.project-desc-short');
@@ -126,24 +110,6 @@ function checkTextOverflow() {
   });
 }
 
-// Mobile menu toggle
-$(document).ready(function () {
-    $('#menu').click(function () {
-        $(this).toggleClass('fa-times');
-        $('.navbar').toggleClass('nav-toggle');
-    });
-
-    $(window).on('scroll load', function () {
-        $('#menu').removeClass('fa-times');
-        $('.navbar').removeClass('nav-toggle');
-    });
-
-    // Close navbar when clicking on a link (for mobile)
-    $('.navbar a').on('click', function() {
-        $('#menu').removeClass('fa-times');
-        $('.navbar').removeClass('nav-toggle');
-    });
-});
 // Run on load and resize
 window.addEventListener('load', checkTextOverflow);
 window.addEventListener('resize', checkTextOverflow);
