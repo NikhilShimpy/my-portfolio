@@ -1,22 +1,40 @@
-// Mobile menu toggle (using jQuery like your home page)
+// Mobile menu toggle for three-dot menu
 $(document).ready(function () {
-
-    $('#menu').click(function () {
+    // Three-dot menu functionality
+    $('#menu-dots').click(function () {
+        $('#expanded-menu').toggleClass('active');
         $(this).toggleClass('fa-times');
-        $('.navbar').toggleClass('nav-toggle');
     });
 
+    // Close menu when clicking close button
+    $('#close-menu').click(function () {
+        $('#expanded-menu').removeClass('active');
+        $('#menu-dots').removeClass('fa-times');
+    });
+
+    // Close menu when clicking outside
+    $(document).click(function (e) {
+        if (!$('#menu-dots').is(e.target) && 
+            !$('#expanded-menu').is(e.target) && 
+            $('#expanded-menu').has(e.target).length === 0 &&
+            $('#expanded-menu').hasClass('active')) {
+            $('#expanded-menu').removeClass('active');
+            $('#menu-dots').removeClass('fa-times');
+        }
+    });
+
+    // Scroll functionality
     $(window).on('scroll load', function () {
-        $('#menu').removeClass('fa-times');
-        $('.navbar').removeClass('nav-toggle');
+        $('#menu-dots').removeClass('fa-times');
+        $('#expanded-menu').removeClass('active');
 
         if (window.scrollY > 60) {
-            document.querySelector('#scroll-top').classList.add('active');
+            $('#scroll-top').addClass('active');
         } else {
-            document.querySelector('#scroll-top').classList.remove('active');
+            $('#scroll-top').removeClass('active');
         }
 
-        // scroll spy
+        // Scroll spy
         $('section').each(function () {
             let height = $(this).height();
             let offset = $(this).offset().top - 200;
@@ -25,104 +43,119 @@ $(document).ready(function () {
 
             if (top > offset && top < offset + height) {
                 $('.navbar ul li a').removeClass('active');
-                $('.navbar').find(`[href="#${id}"]`).addClass('active');
+                $(`.navbar a[href="#${id}"]`).addClass('active');
+                $(`.expanded-menu a[href="#${id}"]`).addClass('active');
             }
         });
     });
 
-// View More/Less functionality
-document.querySelectorAll('.view-more-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const projectDetails = this.parentElement.querySelector('.project-full-details');
-        const isExpanded = projectDetails.classList.contains('active');
+    // Smooth scrolling
+    $('a[href*="#"]').on('click', function (e) {
+        if (this.hash !== "") {
+            e.preventDefault();
+            
+            // Close menu if open
+            $('#expanded-menu').removeClass('active');
+            $('#menu-dots').removeClass('fa-times');
+            
+            const hash = this.hash;
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top - 70
+            }, 800);
+        }
+    });
+
+    // View More/Less functionality
+    $('.view-more-btn').on('click', function() {
+        const projectDetails = $(this).siblings('.project-full-details');
+        const isExpanded = projectDetails.hasClass('active');
         
         if (isExpanded) {
             // Collapse the details
-            projectDetails.classList.remove('active');
-            this.innerHTML = 'Read More <i class="fas fa-chevron-down"></i>';
+            projectDetails.removeClass('active');
+            $(this).html('Read More <i class="fas fa-chevron-down"></i>');
         } else {
             // Expand the details
-            projectDetails.classList.add('active');
-            this.innerHTML = 'Collapse <i class="fas fa-chevron-up"></i>';
+            projectDetails.addClass('active');
+            $(this).html('Collapse <i class="fas fa-chevron-up"></i>');
         }
     });
-});
 
-// Image slider functionality
-document.querySelectorAll('.project-card').forEach(card => {
-    const slider = card.querySelector('.project-image-slider');
-    const images = slider.querySelectorAll('img');
-    const prevBtn = card.querySelector('.prev-btn');
-    const nextBtn = card.querySelector('.next-btn');
-    
-    let currentIndex = 0;
-    
-    // Show initial image
-    if (images.length > 0) {
-        images[currentIndex].classList.add('active');
-    }
-    
-    // Function to show specific slide
-    function showSlide(index) {
-        // Hide all images
-        images.forEach(img => img.classList.remove('active'));
+    // Image slider functionality
+    $('.project-card').each(function() {
+        const slider = $(this).find('.project-image-slider');
+        const images = slider.find('img');
+        const prevBtn = $(this).find('.prev-btn');
+        const nextBtn = $(this).find('.next-btn');
         
-        // Adjust index if out of bounds
-        if (index >= images.length) {
-            currentIndex = 0;
-        } else if (index < 0) {
-            currentIndex = images.length - 1;
-        } else {
-            currentIndex = index;
+        let currentIndex = 0;
+        
+        // Show initial image
+        if (images.length > 0) {
+            images.eq(currentIndex).addClass('active');
         }
         
-        // Show current image
-        images[currentIndex].classList.add('active');
-    }
-    
-    // Next button event
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            showSlide(currentIndex + 1);
+        // Function to show specific slide
+        function showSlide(index) {
+            // Hide all images
+            images.removeClass('active');
+            
+            // Adjust index if out of bounds
+            if (index >= images.length) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = images.length - 1;
+            } else {
+                currentIndex = index;
+            }
+            
+            // Show current image
+            images.eq(currentIndex).addClass('active');
+        }
+        
+        // Next button event
+        if (nextBtn.length > 0) {
+            nextBtn.on('click', function() {
+                showSlide(currentIndex + 1);
+            });
+        }
+        
+        // Previous button event
+        if (prevBtn.length > 0) {
+            prevBtn.on('click', function() {
+                showSlide(currentIndex - 1);
+            });
+        }
+    });
+
+    // Auto-truncate text that overflows
+    function checkTextOverflow() {
+        $('.text-content').each(function() {
+            const shortText = $(this).find('.project-desc-short');
+            const fullDetails = $(this).find('.project-full-details');
+            const viewMoreBtn = $(this).siblings('.view-more-btn');
+            
+            // Don't reset if already expanded by user
+            if (!fullDetails.hasClass('active')) {
+                shortText.css('display', '-webkit-box');
+                viewMoreBtn.html('Read More <i class="fas fa-chevron-down"></i>');
+            }
+            
+            // Check if text is truncated
+            if (shortText[0].scrollHeight > shortText[0].offsetHeight) {
+                // Text is truncated, show read more button
+                viewMoreBtn.show();
+            } else {
+                // Text is not truncated, check if there are details to show
+                if (fullDetails.children().length > 0) {
+                    viewMoreBtn.show();
+                } else {
+                    viewMoreBtn.hide();
+                }
+            }
         });
     }
-    
-    // Previous button event
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            showSlide(currentIndex - 1);
-        });
-    }
+
+    // Run on load and resize
+    $(window).on('load resize', checkTextOverflow);
 });
-
-// Auto-truncate text that overflows
-function checkTextOverflow() {
-  document.querySelectorAll('.text-content').forEach(container => {
-    const shortText = container.querySelector('.project-desc-short');
-    const fullDetails = container.querySelector('.project-full-details');
-    const viewMoreBtn = container.parentElement.querySelector('.view-more-btn');
-    
-    // Don't reset if already expanded by user
-    if (!fullDetails.classList.contains('active')) {
-      shortText.style.display = '-webkit-box';
-      viewMoreBtn.innerHTML = 'Read More <i class="fas fa-chevron-down"></i>';
-    }
-    
-    // Check if text is truncated
-    if (shortText.scrollHeight > shortText.offsetHeight) {
-      // Text is truncated, show read more button
-      viewMoreBtn.style.display = 'block';
-    } else {
-      // Text is not truncated, check if there are details to show
-      if (fullDetails.children.length > 0) {
-        viewMoreBtn.style.display = 'block';
-      } else {
-        viewMoreBtn.style.display = 'none';
-      }
-    }
-  });
-}
-
-// Run on load and resize
-window.addEventListener('load', checkTextOverflow);
-window.addEventListener('resize', checkTextOverflow);
