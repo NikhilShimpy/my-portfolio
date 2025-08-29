@@ -18,9 +18,10 @@ body {
   background: var(--dark-bg);
   color: var(--text-light);
   line-height: 1.6;
+  padding-top: 70px; /* Account for fixed header */
 }
 
-/* Header styles - Exact copy from home page */
+/* REDUCED HEADER SIZE - Matching homepage proportions */
 header {
   position: fixed;
   top: 0;
@@ -30,26 +31,27 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.7rem 10%;
-  height: 6.5rem;
-  background-color: #0C1C24;
+  padding: 0.8rem 5%; /* Reduced padding */
+  height: 70px; /* Reduced height */
+  background-color: rgba(12, 28, 36, 0.95);
   box-shadow: 0 1px 4px rgba(0, 217, 255, 0.3);
   border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 header .logo {
   display: flex;
   align-items: center;
-  font-size: 1.9rem;
-  font-weight: 800;
+  font-size: 1.5rem; /* Reduced font size */
+  font-weight: 700;
   text-decoration: none;
   color: #FFFFFF;
 }
 
 header .logo img {
-  height: 40px;
+  height: 35px; /* Reduced logo size */
   width: auto;
-  margin-right: 10px;
+  margin-right: 8px; /* Reduced margin */
 }
 
 /* Navbar - desktop */
@@ -63,13 +65,13 @@ header .navbar ul {
 }
 
 header .navbar li {
-  margin-left: 2.5rem;
+  margin-left: 1.8rem; /* Reduced spacing */
 }
 
 header .navbar ul li a {
-  font-size: 1.57rem;
+  font-size: 1.1rem; /* Reduced font size */
   color: #B0B8C1;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   letter-spacing: 0.04rem;
   transition: color 0.3s, border-bottom 0.3s;
@@ -78,26 +80,33 @@ header .navbar ul li a {
 header .navbar ul li a.active,
 header .navbar ul li a:hover {
   color: #00D9FF;
-  border-bottom: 0.2rem solid #00D9FF;
-  padding: 0.5rem 0;
+  border-bottom: 0.15rem solid #00D9FF; /* Reduced border size */
+  padding: 0.3rem 0; /* Reduced padding */
 }
 
-/* Hamburger Menu */
+/* Mobile menu toggle */
 #menu {
-  font-size: 3rem;
+  font-size: 1.8rem; /* Reduced icon size */
   cursor: pointer;
   color: #FFFFFF;
   display: none;
+  padding: 5px;
 }
 
+/* Mobile responsive */
 @media (max-width: 768px) {
+  header {
+    padding: 0.7rem 5%;
+    height: 60px; /* Even smaller on mobile */
+  }
+  
   #menu {
     display: block;
   }
 
   header .navbar {
     position: fixed;
-    top: 6.5rem;
+    top: 60px; /* Adjusted for smaller header */
     right: -120%;
     width: 75%;
     height: 100%;
@@ -120,35 +129,34 @@ header .navbar ul li a:hover {
   header .navbar ul li {
     text-align: center;
     width: 100%;
-    margin: 1rem 0;
-    border-radius: .5rem;
-    width: 26rem;
+    margin: 0.8rem 0; /* Reduced margin */
   }
 
   header .navbar ul li a {
     display: block;
-    padding: 1rem;
+    padding: 0.8rem; /* Reduced padding */
     text-align: left;
     color: #FFFFFF;
-    font-size: 2rem;
+    font-size: 1.1rem; /* Reduced font size */
   }
 
   header .navbar ul li a.active,
   header .navbar ul li a:hover {
-    padding: 1rem;
+    padding: 0.8rem; /* Reduced padding */
     color: #00D9FF;
     border-radius: .5rem;
-    border-bottom: .5rem solid #00D9FF;
+    border-bottom: .3rem solid #00D9FF; /* Reduced border size */
   }
-
-  .fa-times {
-    transform: rotate(180deg);
+  
+  /* Hide desktop nav on mobile */
+  header .navbar:not(.nav-toggle) {
+    display: none;
   }
 }
 
-/* Projects section */
+/* Projects section - adjusted padding for smaller header */
 .projects {
-  padding: 12rem 9% 5rem; /* Added extra padding for fixed header */
+  padding: 6rem 9% 5rem; /* Reduced top padding */
 }
 
 .heading {
@@ -384,7 +392,7 @@ header .navbar ul li a:hover {
   color: #0C1C24;
 }
 
-/* Mobile responsive */
+/* Mobile responsive for project cards */
 @media (max-width: 992px) {
   .project-card {
     flex-direction: column;
@@ -412,12 +420,8 @@ header .navbar ul li a:hover {
 }
 
 @media (max-width: 768px) {
-  header {
-    padding: 1rem 5%;
-  }
-  
   .projects {
-    padding: 10rem 5% 3rem;
+    padding: 5rem 5% 3rem;
   }
   
   .heading {
