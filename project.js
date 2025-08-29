@@ -133,24 +133,3 @@ $(document).ready(function () {
 });
 
 // add back 
-// Smooth scroll to work section when coming from home page
-$(document).ready(function() {
-  // Check if URL has hash targeting work section
-  if (window.location.hash === '#work') {
-    setTimeout(function() {
-      $('html, body').animate({
-        scrollTop: $('#projects').offset().top - 70
-      }, 800);
-    }, 100);
-  }
-  
-  // Optional: Add animation to the button
-  setTimeout(function() {
-    $('.back-to-home-btn').addClass('pulse');
-  }, 2000);
-  
-  // Optional: Add pulse animation
-  setInterval(function() {
-    $('.back-to-home-btn').toggleClass('pulse');
-  }, 4000);
-});
