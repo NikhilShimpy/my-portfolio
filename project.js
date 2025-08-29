@@ -1,5 +1,6 @@
 // Mobile menu toggle (using jQuery like your home page)
 $(document).ready(function () {
+
     $('#menu').click(function () {
         $(this).toggleClass('fa-times');
         $('.navbar').toggleClass('nav-toggle');
@@ -8,14 +9,26 @@ $(document).ready(function () {
     $(window).on('scroll load', function () {
         $('#menu').removeClass('fa-times');
         $('.navbar').removeClass('nav-toggle');
-    });
 
-    // Close navbar when clicking on a link (for mobile)
-    $('.navbar a').on('click', function() {
-        $('#menu').removeClass('fa-times');
-        $('.navbar').removeClass('nav-toggle');
+        if (window.scrollY > 60) {
+            document.querySelector('#scroll-top').classList.add('active');
+        } else {
+            document.querySelector('#scroll-top').classList.remove('active');
+        }
+
+        // scroll spy
+        $('section').each(function () {
+            let height = $(this).height();
+            let offset = $(this).offset().top - 200;
+            let top = $(window).scrollTop();
+            let id = $(this).attr('id');
+
+            if (top > offset && top < offset + height) {
+                $('.navbar ul li a').removeClass('active');
+                $('.navbar').find(`[href="#${id}"]`).addClass('active');
+            }
+        });
     });
-});
 
 // View More/Less functionality
 document.querySelectorAll('.view-more-btn').forEach(button => {
