@@ -60,11 +60,11 @@ document.addEventListener('visibilitychange',
     function () {
         if (document.visibilityState === "visible") {
             document.title = "Portfolio | Nikhil Shimpy";
-            $("#favicon").attr("href", "assets/images/favicon.png");
+            $("#favicon").attr("href", "favicon.png");
         }
         else {
             document.title = "Come Back To Portfolio";
-            $("#favicon").attr("href", "assets/images/favhand.png");
+            $("#favicon").attr("href", "/favhand.png");
         }
     });
 
@@ -170,7 +170,7 @@ async function fetchData(type = "skills") {
     type === "skills" ?
         response = await fetch("skills.json")
         :
-        response = await fetch("./projects/projects.json")
+        response = await fetch("projects.json")
     const data = await response.json();
     return data;
 }
@@ -196,7 +196,7 @@ function showProjects(projects) {
     projects.slice(0, 10).filter(project => project.category).forEach(project => {
         projectHTML += `
         <div class="box tilt">
-      <img draggable="false" src="/assets/images/projects/${project.image}.png" alt="project" />
+      <img draggable="false" src="${project.image}.png" alt="project" />
       <div class="content">
         <div class="tag">
         <h3>${project.name}</h3>
@@ -338,7 +338,7 @@ srtop.reveal('.contact .container .form-group', { delay: 400 });
 // project image 
 
 function getProjects() {
-    return fetch("../projects/projects.json")  // go up one folder from /experience/
+    return fetch("projects.json")  // go up one folder from /experience/
         .then(response => response.json());
 }
 
@@ -350,7 +350,7 @@ function showProjectsOnHome(projects) {
         html += `
         <div class="grid-item ${project.category}">
             <div class="box tilt" style="margin: 1rem">
-                <img draggable="false" src="../projects/${project.image}" alt="${project.name}" class="project-image" />
+                <img draggable="false" src="${project.image}" alt="${project.name}" class="project-image" />
                 <div class="content">
                     <h3>${project.name}</h3>
                     <div class="desc">
