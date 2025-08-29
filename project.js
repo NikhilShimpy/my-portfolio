@@ -126,6 +126,24 @@ function checkTextOverflow() {
   });
 }
 
+// Mobile menu toggle
+$(document).ready(function () {
+    $('#menu').click(function () {
+        $(this).toggleClass('fa-times');
+        $('.navbar').toggleClass('nav-toggle');
+    });
+
+    $(window).on('scroll load', function () {
+        $('#menu').removeClass('fa-times');
+        $('.navbar').removeClass('nav-toggle');
+    });
+
+    // Close navbar when clicking on a link (for mobile)
+    $('.navbar a').on('click', function() {
+        $('#menu').removeClass('fa-times');
+        $('.navbar').removeClass('nav-toggle');
+    });
+});
 // Run on load and resize
 window.addEventListener('load', checkTextOverflow);
 window.addEventListener('resize', checkTextOverflow);
