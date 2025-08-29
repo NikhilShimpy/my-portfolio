@@ -153,29 +153,30 @@ header .navbar ul li a:hover {
 }
 
 /* Hamburger Menu */
+/* Three-dot menu styling */
 #menu {
-  font-size: 3rem;
+  font-size: 1.8rem;
   cursor: pointer;
   color: #FFFFFF;
   display: none;
+  padding: 5px;
+  z-index: 1001;
 }
 
+/* Mobile menu - updated background */
 @media (max-width: 768px) {
-  #menu {
-    display: block;
-  }
-
   header .navbar {
     position: fixed;
-    top: 6.5rem;
+    top: 60px;
     right: -120%;
     width: 75%;
     height: 100%;
     text-align: left;
     align-items: flex-start;
-    background-color: #0C1C24;
+    background-color: #0C1C24; /* Solid dark background */
     border-left: 1px solid #00D9FF;
     transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
   }
 
   header .navbar.nav-toggle {
@@ -184,35 +185,51 @@ header .navbar ul li a:hover {
 
   header .navbar ul {
     flex-flow: column;
-    padding: 1rem;
+    padding: 1.5rem;
   }
 
   header .navbar ul li {
     text-align: center;
     width: 100%;
-    margin: 1rem 0;
-    border-radius: .5rem;
-    width: 26rem;
+    margin: 0.8rem 0;
   }
 
   header .navbar ul li a {
     display: block;
-    padding: 1rem;
+    padding: 0.8rem;
     text-align: left;
-    color: #FFFFFF;
-    font-size: 2rem;
+    color: #B0B8C1;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
   }
 
-  header .navbar ul li a.active,
-  header .navbar ul li a:hover {
-    padding: 1rem;
+  header .navbar ul li a:hover,
+  header .navbar ul li a.active {
+    background-color: rgba(0, 217, 255, 0.1);
     color: #00D9FF;
-    border-radius: .5rem;
-    border-bottom: .5rem solid #00D9FF;
+    padding: 0.8rem;
+    border-radius: 5px;
+    border-bottom: 0.2rem solid #00D9FF;
   }
-
-  .fa-times {
-    transform: rotate(180deg);
+  
+  /* Overlay when menu is open */
+  .nav-overlay {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
   }
 }
 
